@@ -1,5 +1,4 @@
 
-.DS_Store
 # phpstorm project files
 .idea
 
@@ -30,4 +29,5 @@ phpunit.phar
 
 tests/_output/*
 tests/_support/_generated
->>>>>>> 931a1a52568e80c987f153d620fc715c3e765f4c
+
+web/.htaccess
