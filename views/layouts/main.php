@@ -1,3 +1,5 @@
+<!-- This file it's just for me. I use it like cheat list for my main.twig layout. -->
+<!-- Will be removed soon. -->
 <?php
 
 /* @var $this \yii\web\View */

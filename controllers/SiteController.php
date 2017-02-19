@@ -11,12 +11,17 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+    public $layout = 'main.twig';
+    public $freeAccess = true;
     /**
      * @inheritdoc
      */
     public function behaviors()
     {
         return [
+            'ghost-access'=> [
+                'class' => 'webvimark\modules\UserManagement\components\GhostAccessControl',
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'only' => ['logout'],
@@ -122,4 +127,5 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+
 }

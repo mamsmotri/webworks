@@ -1,0 +1,67 @@
+
+{{ register_asset_bundle('app/assets/AppAsset') }}  {# asset root for yii advanced template #}
+{{ void(this.beginPage()) }}
+<!DOCTYPE html>
+<html lang="{{ app.language }}">
+<head>
+    <meta charset="{{ app.charset }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ html.encode(this.title) }}</title>
+    {{ html.csrfMetaTags | raw }}
+    {{   void(this.head) }}
+</head>
+<body>
+    {{   void(this.beginBody()) }}
+
+    <div class="wrap">
+        {{ nav_bar_begin({
+            'brandLabel': html.encode(this.title),
+            'brandUrl' : app.homeUrl,
+            'options' : {
+                'class' : 'navbar-inverse navbar-fixed-top',
+            }
+        }) }}
+        {% set menuItems = [] %}
+        {% if app.user.isGuest == false %}
+            {% set menuItems = menuItems|merge([
+                {'label' : 'Главная', 'url' : ['/site/index']},
+                {'label' : 'Что за проект?', 'url' : ['/site/about']},
+                {'label' : 'Личный кабинет', 'url' : ['/site/about']},
+                {
+                    'label' : 'Выход (' ~ app.user.identity.username ~ ')',
+                    'url' : ['/site/logout'],
+                    'linkOptions' : {'data-method' : 'post'}
+                }
+            ])
+        %}
+        {% else %}
+            {% set menuItems = menuItems|merge([
+                {'label' : 'Главная', 'url' : ['/site/index']},
+                {'label' : 'Что за проект?', 'url' : ['/site/about']},
+                {'label' : 'Вход', 'url' : ['/site/login']},
+                {'label' : 'Регистрация', 'url' : ['/site/registration']},
+            ])
+        %}
+        {% endif %}
+        {{ nav_widget({
+            'options': {
+                'class': 'navbar-nav navbar-right',
+            },
+            'items': menuItems
+        }) }}
+        {{ nav_bar_end() }}
+         <div class="container">
+            {{ content | raw}}
+         </div>   
+    </div>
+    <footer class="footer">
+        <div class="container">
+            {# footer content #}
+            <p class="pull-left">&copy; Проект "Машинка" {{ 'now'|date('Y') }} </p>
+            <p class="pull-right">{{ Yii.powered() | raw }} </p>
+        </div>
+    </footer>
+    {{   void(this.endBody()) }}
+</body>
+</html>
+{{   void(this.endPage()) }}
