@@ -71,9 +71,9 @@ $config = [
     ],
     'modules'=>[
         'user-management' => [
-            'class' => 'webvimark\modules\UserManagement\UserManagementModule',
-
-            //'enableRegistration' => true,
+            //'class' => 'webvimark\modules\UserManagement\UserManagementModule',
+            'class' => 'app\ext\UserManagement\UserManagementModule',
+            'enableRegistration' => true,
 
             // Add regexp validation to passwords. Default pattern does not restrict user and can enter any set of characters.
             // The example below allows user to enter :
@@ -90,9 +90,9 @@ $config = [
             // Here you can set your handler to change layout for any controller or action
             // Tip: you can use this event in any module
             'on beforeAction'=>function(yii\base\ActionEvent $event) {
-                    if ( $event->action->uniqueId == 'user-management/auth/login' )
+                    if ( $event->action->uniqueId == 'user-management/auth/login' or $event->action->uniqueId == 'user-management/auth/registration')
                     {
-                        $event->action->controller->layout = 'loginLayout.php';
+                        $event->action->controller->layout = 'loginLayout.twig';
                     };
                 },
         ],
