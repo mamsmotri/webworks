@@ -1,5 +1,6 @@
 <?php
 
+use Yii;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,12 +13,16 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'PK_Drivers')->textInput() ?>
+    <?= $form->field($model, 'Car')->textarea(['rows' => 6]) ?>
+
+    <?= $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->identity->getId()])->label(false) ?>
+
+    <?= $form->field($model, 'Phone')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'Text')->textarea(['rows' => 6]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -18,8 +18,8 @@ class RequestsSearch extends Requests
     public function rules()
     {
         return [
-            [['PK_Requests', 'PK_Drivers'], 'integer'],
-            [['Text'], 'safe'],
+            [['PK_Requests', 'user_id'], 'integer'],
+            [['Car', 'Phone', 'Text'], 'safe'],
         ];
     }
 
@@ -60,10 +60,12 @@ class RequestsSearch extends Requests
         // grid filtering conditions
         $query->andFilterWhere([
             'PK_Requests' => $this->PK_Requests,
-            'PK_Drivers' => $this->PK_Drivers,
+            'user_id' => Yii::$app->user->identity->getId(),
         ]);
 
-        $query->andFilterWhere(['like', 'Text', $this->Text]);
+        $query->andFilterWhere(['like', 'Car', $this->Car])
+            ->andFilterWhere(['like', 'Phone', $this->Phone])
+            ->andFilterWhere(['like', 'Text', $this->Text]);
 
         return $dataProvider;
     }

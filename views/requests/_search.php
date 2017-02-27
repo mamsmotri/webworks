@@ -17,7 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'PK_Requests') ?>
 
-    <?= $form->field($model, 'PK_Drivers') ?>
+    <?= $form->field($model, 'Car') ?>
+
+    <?= $form->field($model, 'user_id') ?>
+
+    <?= $form->field($model, 'Phone') ?>
 
     <?= $form->field($model, 'Text') ?>
 

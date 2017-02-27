@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'PK_Reviews',
             'PK_Masters',
-            'PK_Drivers',
+            'user_id',
             'Text:ntext',
         ],
     ]) ?>

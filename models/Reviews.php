@@ -3,17 +3,17 @@
 namespace app\models;
 
 use Yii;
-
+use webvimark\modules\UserManagement\models\User;
 /**
  * This is the model class for table "Reviews".
  *
  * @property integer $PK_Reviews
  * @property integer $PK_Masters
- * @property integer $PK_Drivers
+ * @property integer $user_id
  * @property string $Text
  *
- * @property Drivers $drivers
- * @property Masters $masters
+ * @property Masters $pKMasters
+ * @property User $user
  */
 class Reviews extends \yii\db\ActiveRecord
 {
@@ -31,11 +31,13 @@ class Reviews extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['PK_Masters', 'PK_Drivers', 'Text'], 'required'],
-            [['PK_Masters', 'PK_Drivers'], 'integer'],
+            [['PK_Masters', 'user_id', 'Text'], 'required'],
+            [['PK_Masters', 'user_id'], 'integer'],
             [['Text'], 'string'],
             [['PK_Masters'], 'unique'],
-            [['PK_Drivers'], 'unique'],
+            [['user_id'], 'unique'],
+            [['PK_Masters'], 'exist', 'skipOnError' => true, 'targetClass' => Masters::className(), 'targetAttribute' => ['PK_Masters' => 'PK_Masters']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
 
@@ -47,7 +49,7 @@ class Reviews extends \yii\db\ActiveRecord
         return [
             'PK_Reviews' => 'Pk  Reviews',
             'PK_Masters' => 'Pk  Masters',
-            'PK_Drivers' => 'Pk  Drivers',
+            'user_id' => 'User ID',
             'Text' => 'Text',
         ];
     }
@@ -55,16 +57,16 @@ class Reviews extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getDrivers()
+    public function getPKMasters()
     {
-        return $this->hasOne(Drivers::className(), ['PK_Drivers' => 'PK_Drivers']);
+        return $this->hasOne(Masters::className(), ['PK_Masters' => 'PK_Masters']);
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMasters()
+    public function getUser()
     {
-        return $this->hasOne(Masters::className(), ['PK_Masters' => 'PK_Masters']);
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
 }

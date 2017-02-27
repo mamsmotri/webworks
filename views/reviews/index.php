@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ListView;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ReviewsSearch */
@@ -13,16 +13,23 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="reviews-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-    <?php echo $this->render('_search', ['model' => $searchModel]); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
         <?= Html::a('Create Reviews', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <?= ListView::widget([
+    <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'itemOptions' => ['class' => 'item'],
-        'itemView' => function ($model, $key, $index, $widget) {
-            return Html::a(Html::encode($model->PK_Reviews), ['view', 'id' => $model->PK_Reviews]);
-        },
-    ]) ?>
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'PK_Reviews',
+            'PK_Masters',
+            'user_id',
+            'Text:ntext',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
 </div>

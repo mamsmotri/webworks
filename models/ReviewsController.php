@@ -1,20 +1,19 @@
 <?php
 
-namespace app\controllers;
+namespace app\models;
 
 use Yii;
-use app\models\Requests;
-use app\models\RequestsSearch;
+use app\models\Reviews;
+use app\models\ReviewsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * RequestsController implements the CRUD actions for Requests model.
+ * ReviewsController implements the CRUD actions for Reviews model.
  */
-class RequestsController extends Controller
+class ReviewsController extends Controller
 {
-    public $layout = 'main.twig';
     /**
      * @inheritdoc
      */
@@ -31,12 +30,12 @@ class RequestsController extends Controller
     }
 
     /**
-     * Lists all Requests models.
+     * Lists all Reviews models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new RequestsSearch();
+        $searchModel = new ReviewsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class RequestsController extends Controller
     }
 
     /**
-     * Displays a single Requests model.
+     * Displays a single Reviews model.
      * @param integer $id
      * @return mixed
      */
@@ -58,16 +57,16 @@ class RequestsController extends Controller
     }
 
     /**
-     * Creates a new Requests model.
+     * Creates a new Reviews model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Requests();
+        $model = new Reviews();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->PK_Requests]);
+            return $this->redirect(['view', 'id' => $model->PK_Reviews]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -76,7 +75,7 @@ class RequestsController extends Controller
     }
 
     /**
-     * Updates an existing Requests model.
+     * Updates an existing Reviews model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -86,7 +85,7 @@ class RequestsController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->PK_Requests]);
+            return $this->redirect(['view', 'id' => $model->PK_Reviews]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -95,7 +94,7 @@ class RequestsController extends Controller
     }
 
     /**
-     * Deletes an existing Requests model.
+     * Deletes an existing Reviews model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -108,15 +107,15 @@ class RequestsController extends Controller
     }
 
     /**
-     * Finds the Requests model based on its primary key value.
+     * Finds the Reviews model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Requests the loaded model
+     * @return Reviews the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Requests::findOne($id)) !== null) {
+        if (($model = Reviews::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

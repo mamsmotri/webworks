@@ -18,7 +18,7 @@ class ReviewsSearch extends Reviews
     public function rules()
     {
         return [
-            [['PK_Reviews', 'PK_Masters', 'PK_Drivers'], 'integer'],
+            [['PK_Reviews', 'PK_Masters', 'user_id'], 'integer'],
             [['Text'], 'safe'],
         ];
     }
@@ -61,7 +61,7 @@ class ReviewsSearch extends Reviews
         $query->andFilterWhere([
             'PK_Reviews' => $this->PK_Reviews,
             'PK_Masters' => $this->PK_Masters,
-            'PK_Drivers' => $this->PK_Drivers,
+            'user_id' => $this->user_id,
         ]);
 
         $query->andFilterWhere(['like', 'Text', $this->Text]);

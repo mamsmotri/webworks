@@ -1,5 +1,6 @@
 <?php
 
+use Yii;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,8 +13,6 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'PK_Masters')->textInput() ?>
-
     <?= $form->field($model, 'MasterName')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'MasterAddress')->textarea(['rows' => 6]) ?>
@@ -22,8 +21,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'MasterDesq')->textarea(['rows' => 6]) ?>
 
+    <?= $form->field($model, 'user_id')->hiddenInput(['value' => Yii::$app->user->identity->getId()])->label(false) ?>
+
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Создать' : 'Обновить', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\models;
 
 use Yii;
 use app\models\Requests;
@@ -14,7 +14,6 @@ use yii\filters\VerbFilter;
  */
 class RequestsController extends Controller
 {
-    public $layout = 'main.twig';
     /**
      * @inheritdoc
      */

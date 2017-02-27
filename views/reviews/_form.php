@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'PK_Masters')->textInput() ?>
 
-    <?= $form->field($model, 'PK_Drivers')->textInput() ?>
+    <?= $form->field($model, 'user_id')->textInput() ?>
 
     <?= $form->field($model, 'Text')->textarea(['rows' => 6]) ?>
 

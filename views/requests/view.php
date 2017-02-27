@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="requests-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h3>Номер заявки: <?= Html::encode($this->title) ?></h3>
 
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->PK_Requests], ['class' => 'btn btn-primary']) ?>
@@ -29,7 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'PK_Requests',
-            'PK_Drivers',
+            'Car:ntext',
+            'user_id',
+            'Phone:ntext',
             'Text:ntext',
         ],
     ]) ?>

@@ -18,7 +18,7 @@ class MastersSearch extends Masters
     public function rules()
     {
         return [
-            [['PK_Masters'], 'integer'],
+            [['PK_Masters', 'user_id'], 'integer'],
             [['MasterName', 'MasterAddress', 'MasterPhone', 'MasterDesq'], 'safe'],
         ];
     }
@@ -60,6 +60,7 @@ class MastersSearch extends Masters
         // grid filtering conditions
         $query->andFilterWhere([
             'PK_Masters' => $this->PK_Masters,
+            'user_id' => Yii::$app->user->identity->getId(),
         ]);
 
         $query->andFilterWhere(['like', 'MasterName', $this->MasterName])
