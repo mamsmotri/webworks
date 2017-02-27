@@ -3,6 +3,7 @@
 $params = require(__DIR__ . '/params.php');
 
 $config = [
+    'language' => 'ru',
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
@@ -94,7 +95,8 @@ $config = [
                     {
                         $event->action->controller->layout = 'loginLayout.twig';
                     };
-                },
+            },
+
         ],
     ],
     'params' => $params,

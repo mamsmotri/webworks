@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use webvimark\modules\UserManagement\UserManagementModule;
+use webvimark\modules\UserManagement\models\User;
 
 class SiteController extends Controller
 {
@@ -106,7 +108,29 @@ class SiteController extends Controller
      */
     public function actionCabinet()
     {
-        return $this->render('cabinet.twig');
+        return $this->render('cabinet');
+    }
+
+    /**
+     * Assign driver role for user-
+     *
+     * @redirect cabinet
+     */
+    public function actionDriver() 
+    {
+        Yii::$app->user->identity->assignRole(Yii::$app->user->id, 'Driver');
+        $this->redirect('index.php?r=site/cabinet');
+    }
+
+        /**
+     * Assign master role for user-
+     *
+     * @redirect cabinet
+     */
+    public function actionMaster() 
+    {
+        Yii::$app->user->identity->assignRole(Yii::$app->user->id, 'Master');
+        $this->redirect('index.php?r=site/cabinet');
     }
 
 }
