@@ -26,7 +26,7 @@
             {% set menuItems = menuItems|merge([
                 {'label' : 'Главная', 'url' : ['/site/index']},
                 {'label' : 'Что за проект?', 'url' : ['/site/about']},
-                {'label' : 'Личный кабинет', 'url' : ['/site/about']},
+                {'label' : 'Личный кабинет', 'url' : ['/site/cabinet']},
                 {
                     'label' : 'Выход (' ~ app.user.identity.username ~ ')',
                     'url' : ['/user-management/auth/logout'],

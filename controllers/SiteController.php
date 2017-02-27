@@ -58,6 +58,7 @@ class SiteController extends Controller
         ];
     }
 
+
     /**
      * Displays homepage.
      *
@@ -95,6 +96,17 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+
+
+    /**
+     * Displays personal cabinet data
+     *
+     * @return string
+     */
+    public function actionCabinet()
+    {
+        return $this->render('cabinet.twig');
     }
 
 }
