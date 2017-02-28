@@ -10,6 +10,10 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use webvimark\modules\UserManagement\UserManagementModule;
 use webvimark\modules\UserManagement\models\User;
+use app\models\Masters;
+use app\models\Requests;
+use yii\data\Pagination;
+
 
 class SiteController extends Controller
 {
@@ -68,7 +72,16 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        // $masters = Masters::find()->select('PK_Masters, MasterName, MasterDesq')->all();
+        $query_mas = Masters::find()->select('PK_Masters, MasterName, MasterDesq');
+        $pages_mas = new Pagination(['totalCount' => $query_mas->count(), 'pageSize' => '4', 'pageSizeParam' => false, 'forcePageParam' => false]);
+        $masters = $query_mas->offset($pages_mas->offset)->limit($pages_mas->limit)->all();
+
+        $query_req = Requests::find()->select('PK_Requests, Car, Text');
+        $pages_req = new Pagination(['totalCount' => $query_req->count(), 'pageSize' => '4', 'pageSizeParam' => false, 'forcePageParam' => false]);
+        $requests = $query_req->offset($pages_req->offset)->limit($pages_req->limit)->all();
+
+        return $this->render('index', compact('masters', 'pages_mas', 'requests', 'pages_req'));
     }
 
 
