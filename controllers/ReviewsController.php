@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class ReviewsController extends Controller
 {
+    public $layout = 'main.twig';
     /**
      * @inheritdoc
      */

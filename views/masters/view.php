@@ -2,8 +2,9 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use webvimark\modules\UserManagement\components\GhostMenu;
+use webvimark\modules\UserManagement\UserManagementModule;
 
-/* @var $this yii\web\View */
 /* @var $model app\models\Masters */
 
 $this->title = $model->PK_Masters;
@@ -36,5 +37,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
         ],
     ]) ?>
-
+    <?php
+        echo GhostMenu::widget([
+            'encodeLabels'=>false,
+            'activateParents'=>true,
+            'items' => [
+                [
+                    'label' => false,
+                    'items'=>[
+                        ['label'=>'Оставить отзыв о мастерской', 'url'=>['reviews/create', 'mas' => $model->PK_Masters]],
+                    ],
+                ],
+            ],
+        ]);
+    ?>
 </div>

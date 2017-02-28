@@ -50,7 +50,7 @@ class Reviews extends \yii\db\ActiveRecord
             'PK_Reviews' => 'Pk  Reviews',
             'PK_Masters' => 'Pk  Masters',
             'user_id' => 'User ID',
-            'Text' => 'Text',
+            'Text' => 'Текст отзыва',
         ];
     }
 

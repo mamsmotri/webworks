@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class MastersController extends Controller
 {
+    public $layout = 'main.twig';
     /**
      * @inheritdoc
      */

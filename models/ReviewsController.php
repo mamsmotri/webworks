@@ -64,7 +64,7 @@ class ReviewsController extends Controller
     public function actionCreate()
     {
         $model = new Reviews();
-
+        var_dump($mas)
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->PK_Reviews]);
         } else {
